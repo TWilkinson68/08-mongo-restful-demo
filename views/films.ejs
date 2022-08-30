@@ -1,9 +1,20 @@
-<%- include('head') %>
+<%- include('partials/head') %>
 <div class="container">
-    <ul>
+  <% if (locals.searchMsg) { %>
+  <p><%= searchMsg %></p>
+  <% } %>
+  <section class="wrap">
     <% films.forEach(function(film){ %>
-        <li><%= film.filmName %> </li>
-        <% }) %>
-    </ul>    
+
+    <div class="filmThumb">
+      <div>
+        <a href="/film/<%= film._id %>"
+          ><img src="/images/<%= film.filmImage %>" alt="<%= film.filmTitle %>"
+        /></a>
+      </div>
+      <h3><a href="/film/<%= film._id %>"><%= film.filmTitle %></a></h3>
+    </div>
+    <% }) %>
+  </section>
 </div>
-<%- include('footer'); %>
+<%- include('partials/footer'); %>

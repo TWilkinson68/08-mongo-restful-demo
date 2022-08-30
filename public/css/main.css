@@ -1,0 +1,13 @@
+.container {
+  max-width: 1280px;
+  margin: auto;
+}
+.filmThumb {
+  flex: 1 1 25%;
+}
+nav ul li a {
+  padding-right:5px;
+  border-bottom: none;
+  border-right: 1px solid #ccc;
+  display: inline-block;
+}

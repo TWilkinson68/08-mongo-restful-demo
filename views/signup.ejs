@@ -1,0 +1,25 @@
+<%- include('partials/head'); %>
+<div class="container">
+    <h1>Sign Up</h1>
+    
+        <% if (locals.registerMsg) { %>
+        <p class="error"><%= registerMsg %></p>
+        <%  } %>
+  
+    <form action="/signup" method="post" class="logReg">
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" />
+      </div>
+
+      <div>
+        <input type="submit" value="Sign Up" />
+      </div>
+    </form>
+</div>
+<%- include('partials/footer'); %>

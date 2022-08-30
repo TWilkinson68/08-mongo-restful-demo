@@ -1,0 +1,33 @@
+<%- include('partials/headcms') %>
+<div class="container">
+     <h2>CMS</h2>
+  
+  <p><a href="/cms/insert/" class="add">Add New</a></p>
+  
+    <table>
+      <tr>
+           <th>Film Name</th>
+           <th></th>
+           <th></th>
+      </tr>
+        
+    <% films.forEach(function(film){ %>
+          <tr>
+            <td>
+            <a href="/film/<%= film._id %>"><%= film.filmTitle %></a>
+            </td>
+            <td>
+            <a href="/cms/edit/<%= film._id %>" class="edit">Edit</a>
+            </td>
+                        <td>
+            <a href="/cms/delete/<%= film._id %>" class="delete">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      
+    </table>
+  
+
+    </ul>    
+</div>
+<%- include('partials/footer'); %>

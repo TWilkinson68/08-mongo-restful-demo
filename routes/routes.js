@@ -1,34 +1,53 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
-// add myControllers 
-//const myControllers = require('../controllers/controllers.js');
+// add myControllers
+const myControllers = require("../controllers/controllers.js");
 
-console.dir(myControllers);
+router.get("/", (req, res) => {
+  myControllers.viewAll(req, res);
+});
 
-module.exports = (app) => {
+router.get("/api/allfilms", (req, res) => {
+  myControllers.viewAllJSON(req, res);
+});
 
-    router.get('/main', (req, res) => {
-        return res.render('main', {
-            title: 'EJS Example from Parts', 
-            message: 'Hello Template built in parts',
-            showMsg: true,
-            headingOne: 'Page made from parts'
-            });
-    });
+router.get("/film/:filmID", (req, res) => {
+  myControllers.getItem(req, res, "oneFilm", "View: ");
+});
 
-    router.get('/allfilms', (req, res) => {
-        myControllers.viewAll(app, req, res);
-    });
+router.get("/search", (req, res) => {
+  myControllers.searchResults(req, res);
+});
 
-    router.get('/film/:filmID', (req, res) => {
-        myControllers.viewItem(app, req, res);
-    });
+// add POST, PUT AND DELETE ROUTES
+router.get("/cms/", (req, res) => {
+  myControllers.cms(req, res);
+});
 
-    // add POST, PUT AND DELETE ROUTES
+router.get("/cms/edit/:filmID", (req, res) => {
+  myControllers.getItem(req, res, "edit", "Edit Film: ");
+});
 
-  
-    return router;
+router.post("/cms/edit", (req, res) => {
+  myControllers.amendItem(req, res);
+});
 
-}
+router.get("/cms/insert", (req, res) => {
+  myControllers.insert(req, res);
+});
+
+router.post("/cms/insert", (req, res) => {
+  myControllers.insertItem(req, res);
+});
+
+router.get("/cms/delete/:filmID", (req, res) => {
+  myControllers.getItem(req, res, "delete", "Delete Film: ");
+});
+
+router.post("/cms/delete", (req, res) => {
+  myControllers.deleteItem(req, res);
+});
+
+module.exports = router;
