@@ -12,8 +12,10 @@
           ><img src="/images/<%= film.filmImage %>" alt="<%= film.filmTitle %>"
         /></a>
       </div>
-      <h3><a href="/film/<%= film._id %>"><%= film.filmTitle %></a></h3>
+      <h3><a href="/film/<%= film._id %>"><%= film.filmTitle %></a>(<%= film.filmCertificate%>)</h3>
+      
     </div>
+    
     <% }) %>
   </section>
 </div>

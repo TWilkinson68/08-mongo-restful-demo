@@ -46,6 +46,10 @@ router.get("/cms/delete/:filmID", (req, res) => {
   myControllers.getItem(req, res, "delete", "Delete Film: ");
 });
 
+router.get("/api/:film/:filmID", (req, res)=>{
+  myControllers.getItem(req,res,)
+})
+
 router.post("/cms/delete", (req, res) => {
   myControllers.deleteItem(req, res);
 });

@@ -53,6 +53,20 @@ module.exports = {
       });
   },
 
+  getJSon: function(req, res){
+    console.info(JSON)
+    dbo
+    .getDb()
+    .collection("filmsCollection")
+    .find({JSON})
+    .toArray(function(err, docs){
+      if(err){
+        console.error(err);
+      }
+      res.json(docs)
+    })
+  },
+
   getItem: async function (req, res, view, viewTitle) {
     console.info("Get Item controller");
     let filmID = req.params.filmID;
