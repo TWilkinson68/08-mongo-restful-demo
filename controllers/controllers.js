@@ -39,6 +39,40 @@ module.exports = {
       });
   },
 
+  viewItem: function(req, res) {
+    console.info("view items");
+    dbo
+    .getDb()
+    .collection("filmsCollection")
+    .find({})
+    .toArray(function(err, docs){
+      if (err){
+        console.error(err);
+      }
+      res.json(docs);
+    });
+  },
+
+  addItem: function (app, req, res) {
+    console.info("POST controller")
+    var newFilm = req.body;
+    // Sort as filmID as INT
+    var filmIDAsInt = parseInt(newFilm.filmID);
+    newFilm.filmID = filmIDAsInt;
+    app.get('myDb').collection("filmsCollection").insertOne(newFilm,
+    function (err, dbResp) {
+    if (err) {
+    console.error(err)
+    }
+    if (dbResp.insertedCount === 1) {
+    res.json({ msg: "Successfully Added" +
+   dbResp.insertedId })
+    } else {
+    res.json({ msg: "Not Found" })
+    }
+    })
+    },
+
   viewAllJSON: function (req, res) {
     console.info("View All JSON controller");
     dbo
@@ -51,20 +85,6 @@ module.exports = {
         }
         res.json(docs);
       });
-  },
-
-  getJSon: function(req, res){
-    console.info(JSON)
-    dbo
-    .getDb()
-    .collection("filmsCollection")
-    .find({JSON})
-    .toArray(function(err, docs){
-      if(err){
-        console.error(err);
-      }
-      res.json(docs)
-    })
   },
 
   getItem: async function (req, res, view, viewTitle) {

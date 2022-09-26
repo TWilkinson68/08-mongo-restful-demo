@@ -21,6 +21,10 @@ router.get("/search", (req, res) => {
   myControllers.searchResults(req, res);
 });
 
+router.get("/film",(req, res) => {
+  myControllers.addItem(app, req, res);
+});
+
 // add POST, PUT AND DELETE ROUTES
 router.get("/cms/", (req, res) => {
   myControllers.cms(req, res);
